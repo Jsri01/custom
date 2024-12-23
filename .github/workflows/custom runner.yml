@@ -2,7 +2,7 @@ name: must run on custom runner
 on: push
 jobs: 
   push:
-  runs-on: self-hosted
-steps:
- -run: echo "Hello world"
- -run: echo $hostname
+    runs-on: self-hosted
+    steps:
+      -run: echo 'Hello world'
+       -run: echo $hostname
