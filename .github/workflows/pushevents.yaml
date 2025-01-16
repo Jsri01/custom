@@ -4,6 +4,6 @@ jobs:
   push-actions:
     runs-on: ubuntu-latest
     steps: 
-    -name: show info 
-     run: |
-       echo "run echo"
+    - name: show info 
+      run: |
+         echo "run echo"
