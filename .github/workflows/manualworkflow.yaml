@@ -1,0 +1,13 @@
+name: manualworkflow
+on: 
+ push:
+  branches: main
+jobs:
+  manualworkflow:
+    runs-on: ubuntu-latest
+    steps: 
+    - name: checkout repository
+    - uses: action/checkout@v4
+    - name: show info 
+      run: |
+         echo "run echo"
