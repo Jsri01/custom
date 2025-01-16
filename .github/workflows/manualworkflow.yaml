@@ -1,7 +1,6 @@
 name: manualworkflow
 on: 
- push:
-  branches: main
+ workflow_dispatch:
 jobs:
   manualworkflow:
     runs-on: ubuntu-latest
