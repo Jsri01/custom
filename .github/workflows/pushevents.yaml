@@ -1,5 +1,7 @@
 name: push events
-on: push
+on: 
+ push:
+  branches: test
 jobs:
   push-actions:
     runs-on: ubuntu-latest
