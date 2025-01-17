@@ -1,10 +1,11 @@
 name: manualworkflow
 on: 
  workflow_dispatch:
- inputs: 
+  inputs: 
    environment:
-     discription: "environment to deploy"
-     required: true
+      description: "environment to deploy"
+      required: true
+      default: "Hello"
 jobs:
   manualworkflow:
     runs-on: ubuntu-latest
