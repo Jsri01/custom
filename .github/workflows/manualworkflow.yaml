@@ -2,7 +2,7 @@ name: manualworkflow
 on: 
  workflow_dispatch:
   inputs: 
-   environment:
+   param1:
       description: "environment to deploy"
       required: true
       default: "Hello"
@@ -14,4 +14,4 @@ jobs:
       uses: actions/checkout@v4
     - name: show info 
       run: |
-         echo "running manual task with environment: ${ github.event.inputs.environment }"
+         echo "running manual task with param1: ${ github.event.inputs.param1 }"
