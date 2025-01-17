@@ -1,5 +1,6 @@
 name: manualworkflow
-on: push
+on: 
+ workflow_dispatch:
  inputs: 
    environment:
      discription: "environment to deploy"
