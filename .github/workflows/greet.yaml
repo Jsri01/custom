@@ -11,10 +11,8 @@ jobs:
     - name: checkout a code
       uses: actions/checkout@v4
     - name: greeting a person
-      env:
-        USER_NAME: ${{ github_actor }}
       run: |
-         echo "Hello my name is $USER_NAME!"
+         echo "Hello my name is ${{ github.actor }}
     
     
      
