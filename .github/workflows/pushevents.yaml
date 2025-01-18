@@ -1,11 +1,19 @@
-name: push events
-on: 
- push:
-  branches: test
+name: node.js project
+on: push
+
 jobs:
-  push-actions:
-    runs-on: ubuntu-latest
+  build: 
+    runs-on: unbuntu-latest
     steps: 
-    - name: show info 
-      run: |
-         echo "run echo"
+     - name: checkout code
+       uses: actions/checkout@v4
+   
+     - name: set up node.js
+       uses: actions/setup-node@v4
+       with:
+        node-version: 18
+     - name: install dependencies
+       run: npm install
+     - name: run test
+       run: npm test
+     
