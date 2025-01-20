@@ -1,0 +1,30 @@
+name: s3 bucket
+on: push 
+jobs:
+ build:
+  runs-on: ubuntu-latest
+  steps:
+   - name: checkout code
+     uses: actions/checkout@v4
+   - name: set up nodejs
+     uses: action/setuo-node@v2
+     with: 
+       node-version: 20
+   - name: install dependencies
+     run: npm install
+   - name: run the nodejs
+     run: npm run
+   - name: download artifacts
+     uses: actions/download-artifact@v4
+   - name: configure aws cli
+     uses: aws-actions/configure-aws-credentials@v2
+     with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+   - name: Upload files to S3
+     run: 
+        ARTIFACT_DIR="path/to/your/artifacts"
+        S3_BUCKET="jayasriawsbucket"
+     
+  
