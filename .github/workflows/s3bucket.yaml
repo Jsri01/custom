@@ -1,55 +1,55 @@
-name: S3 Bucket Upload
+name: Deploy my Lambda Function
 
-on:
+# Trigger on all push events to the main branch
+on: 
   push:
     branches:
-      - main  # Trigger on push to the main branch, modify as needed
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
-
+    runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the repository code
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Check out code
+        uses: actions/checkout@v2
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
+
       - name: Install libraries
         run: |
-            cd function
-            python -m pip install --upgrade pip
-            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+          cd function
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+
       - name: Create zip bundle
         run: |
-            cd function
-            zip -r ../${{ github.sha }}.zip .
+          cd function
+          zip -r ../${{ github.sha }}.zip .
+
       - name: Archive artifact
         uses: actions/upload-artifact@v4
         with:
           name: zipped-bundle
           path: ${{ github.sha }}.zip
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
-          name: zipped bundle  # Replace with the actual artifact name if it's different
+          name: zipped-bundle
 
-      # Step 6: Configure AWS CLI credentials
       - name: Configure AWS CLI
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Ensure this is the correct AWS region
+        uses: aws-actions/configure-aws-credentials@v1
+        with: 
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET_KEY }}
+          aws-region: us-east-1
 
-      # Step 7: Upload files to S3
-      - name: Upload files to S3
-        run: |
-          # Correct S3 path format and use the artifact name dynamically
-          aws s3 cp "${{ github.sha }}.zip" "s3://jayasriawsbucket/${{ github.sha }}/"
-
-        
-     
-  
+      - name: Upload artifacts to S3
+        run: aws s3 cp ${{ github.sha }}.zip s3://jayasriawsbucket/${{ github.sha }}
