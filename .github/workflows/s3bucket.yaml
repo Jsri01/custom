@@ -7,7 +7,7 @@ jobs:
    - name: checkout code
      uses: actions/checkout@v4
    - name: set up nodejs
-     uses: action/setup-node@v2
+     uses: action/setup-node@v3
      with: 
        node-version: 20
    - name: install dependencies
