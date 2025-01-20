@@ -6,5 +6,7 @@ jobs:
   runs-on: ubuntu-latest
   env:
      App_mode: ${{ var.App_mode }}
+  steps:
+   - name: declaring env var  
      run: |
-      echo "this is my App_mode.mode"
+      echo "this is my $App_mode mode"
