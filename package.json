@@ -1,0 +1,14 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "A simple Node.js project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "build": "echo \"Building the project...\""
+  },
+  "author": "Jsri01",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
