@@ -13,22 +13,6 @@ jobs:
       # Step 1: Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v4
-
-      # Step 2: Set up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  # Specify Node.js version
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Step 4: Run the Node.js build script
-      - name: Run the Node.js build script
-        run: npm run build
-
-      # Step 5: Download the artifact
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
