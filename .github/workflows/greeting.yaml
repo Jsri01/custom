@@ -8,7 +8,8 @@ jobs:
      - name: checkout code
        uses: actions/checkout@v4
      - name: greeting a person 
-       my_name: Jayasri
+       env:
+        my_name: Jayasri
        run: |
         echo "Hi $my_name"
         
