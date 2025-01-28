@@ -12,6 +12,7 @@ jobs:
         my_name: Jayasri
        run: |
         echo "Hi ::add-mask::$my_name"
+        echo "Hi $my_name"
         
 
      
