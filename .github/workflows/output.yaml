@@ -9,6 +9,7 @@
           - name: set color  
             id: color-selector
             run: echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+            run: echo "SELECTED_COLOR=Black" > "$GITHUB_OUTPUT"
           - name: Get color
             env:
              SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
